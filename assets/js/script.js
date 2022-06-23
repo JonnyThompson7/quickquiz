@@ -13,7 +13,7 @@ let emptyArray = [];
 let storedArray = JSON.parse(window.localStorage.getItem("highScores"));
 var questionCount = 0;
 let score = 0;
-//Timer starts when the user clicks startButton (see above).
+// Function to Start Timer
 function setTime() {
   displayQuestions();
   let timerInterval = setInterval(function() {
@@ -26,7 +26,7 @@ function setTime() {
     } 
   }, 1000);
 }
-//function to load the questions on the page
+// Function to Display Questions
 function displayQuestions() {
   removeEls(startButton);
   if (questionCount < questions.length) {
