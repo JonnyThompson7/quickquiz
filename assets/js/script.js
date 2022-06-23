@@ -26,15 +26,12 @@ function setTime() {
     } 
   }, 1000);
 }
-
 //function to load the questions on the page
 function displayQuestions() {
   removeEls(startButton);
-
   if (questionCount < questions.length) {
     questionDiv.innerHTML = questions[questionCount].title;
     choices.textContent = "";
-
     for (let i = 0; i < questions[questionCount].multiChoice.length; i++) {
       let el = document.createElement("button");
       el.innerText = questions[questionCount].multiChoice[i];
@@ -48,9 +45,7 @@ function displayQuestions() {
           score -= 10;
           secondsLeft = secondsLeft - 15;
         }
-        
         questionDiv.innerHTML = "";
-
         if (questionCount === questions.length) {
           return;
         } else {
@@ -62,15 +57,12 @@ function displayQuestions() {
     }
   }
 }
-
-
+// Function to Save User Score
 function captureUserScore() {
   timer.remove();
   choices.textContent = "";
-
   let initialsInput = document.createElement("input");
   let postScoreBtn = document.createElement("input");
-
   results.innerHTML = `You scored ${score} points! Enter initials: `;
   initialsInput.setAttribute("type", "text");
   postScoreBtn.setAttribute("type", "button");
@@ -78,13 +70,11 @@ function captureUserScore() {
   postScoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
     let scoresArray = defineScoresArray(storedArray, emptyArray);
-
     let initials = initialsInput.value;
     let userAndScore = {
       initials: initials,
       score: score,
     };
-
     scoresArray.push(userAndScore);
     saveScores(scoresArray);
     displayAllScores();
@@ -95,11 +85,10 @@ function captureUserScore() {
   results.append(initialsInput);
   results.append(postScoreBtn);
 }
-
+// Score Variables
 const saveScores = (array) => {
   window.localStorage.setItem("highScores", JSON.stringify(array));
 }
-
 const defineScoresArray = (arr1, arr2) => {
   if(arr1 !== null) {
     return arr1
@@ -107,15 +96,13 @@ const defineScoresArray = (arr1, arr2) => {
     return arr2
   }
 }
-
 const removeEls = (...els) => {
   for (let el of els) el.remove();
 }
-
+// Function to Display All Variables
 function displayAllScores() {
   removeEls(timer, startButton, results);
   let scoresArray = defineScoresArray(storedArray, emptyArray);
-
   scoresArray.forEach(obj => {
     let initials = obj.initials;
     let storedScore = obj.score;
@@ -124,7 +111,7 @@ function displayAllScores() {
     scoresDiv.append(resultsP);
   });
 }
-
+// Function to View Scores
 function viewScores() {
   viewScoresBtn.addEventListener("click", function(event) {
     event.preventDefault();
@@ -135,7 +122,7 @@ function viewScores() {
     goBackBtn();
   });
 }
-
+// Function to Clear Scores
 function clearScoresBtn() {    
   let clearBtn = document.createElement("input");
   clearBtn.setAttribute("type", "button");
@@ -147,7 +134,7 @@ function clearScoresBtn() {
   })
   scoresDiv.append(clearBtn)
 }
-
+// Function to Go Back to Quiz
 function goBackBtn() {
   let backBtn = document.createElement("input");
   backBtn.setAttribute("type", "button");
@@ -158,6 +145,5 @@ function goBackBtn() {
   })
   buttonsDiv.append(backBtn)
 }
-
-
+// View Scores
 viewScores();
