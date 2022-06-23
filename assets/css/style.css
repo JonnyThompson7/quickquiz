@@ -1,0 +1,27 @@
+/* Styles Start */
+body {
+    text-align: center;
+    background-color: rgb(75, 174, 212);
+}
+#timer {
+    font-weight: bold;
+    font-size: 20px;
+    color: red;
+}
+#question-div {
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(78, 75, 75)
+}
+#results {
+    font-size: 25px;
+    color: green;
+}
+#scores-div {
+    font-size: 32px;
+    color: darkgoldenrod;
+    font-weight: bold;
+}
+footer {
+    margin-top: 810px;
+}
